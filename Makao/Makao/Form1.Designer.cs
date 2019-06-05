@@ -46,9 +46,9 @@
             // 
             this.powitalna1.BackColor = System.Drawing.Color.Transparent;
             this.powitalna1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("powitalna1.BackgroundImage")));
-            this.powitalna1.Location = new System.Drawing.Point(4, 12);
+            this.powitalna1.Location = new System.Drawing.Point(12, 12);
             this.powitalna1.Name = "powitalna1";
-            this.powitalna1.Size = new System.Drawing.Size(1049, 584);
+            this.powitalna1.Size = new System.Drawing.Size(1038, 586);
             this.powitalna1.TabIndex = 1;
             // 
             // Form1
@@ -56,11 +56,13 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 560);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(1065, 610);
             this.Controls.Add(this.powitalna1);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Makao";
             this.ResumeLayout(false);
 
         }

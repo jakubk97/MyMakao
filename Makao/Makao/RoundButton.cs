@@ -9,7 +9,7 @@ namespace Quiz
         private Color _borderColor = Color.Transparent;
         private Color _onHoverBorderColor = Color.Transparent;
         private Color _buttonColor = Color.Black;
-        private Color _onHoverButtonColor = Color.LightGray;
+        private Color _onHoverButtonColor = Color.LightGray; //komkom
         private Color _textColor = Color.White;
         private Color _onHoverTextColor = Color.Gray;
 
