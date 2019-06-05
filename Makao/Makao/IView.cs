@@ -15,12 +15,8 @@ namespace Makao
         #endregion
 
         #region Events
-        //event Action LoadStartDirectory;
-        //event Action<string> LoadTest;
-        //event Action<string, int> LoadQuestion;
-        //event Action<string, int> Delete;
-        //event Action<string, string, string, string, string, string, string, string, string, string, string> Add;
-        //event Action<string, string, string, string, string, string, string, string, string, string, string, int> Save;
+        event Action StartGame;
+        event Action LoadInstruction;
         #endregion
     }
 }

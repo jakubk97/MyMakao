@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace Makao
 {
-    public partial class Form1 : Form, IView
+    public partial class Gra : UserControl
     {
-        public Form1()
+        public Gra()
         {
             InitializeComponent();
         }
@@ -21,6 +21,12 @@ namespace Makao
         public event Action LoadInstruction;
 
         #endregion
+
+        #region Functions
+
+
+        #endregion
+
 
 
     }
