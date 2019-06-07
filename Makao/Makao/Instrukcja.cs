@@ -11,22 +11,40 @@ namespace Makao
 {
     public partial class Instrukcja : UserControl
     {
+
+        private static Instrukcja instancja;
+
+        public static Instrukcja Instancja
+        {
+            get
+            {
+                if (instancja == null)
+                    instancja = new Instrukcja();
+                return instancja;
+            }
+        }
+
+
+
         public Instrukcja()
         {
             InitializeComponent();
         }
 
         #region Events
-        public event Action<Gra> StartGame;
-        public event Action<Instrukcja> LoadInstruction;
-        public event Action<Powitalna> LoadWelcome;
+        public event Action StartGame;
+        public event Action LoadInstruction;
+        public event Action LoadWelcome;
+
+
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Powitalna p1 = new Powitalna();
             if (LoadWelcome != null)
-                LoadWelcome(p1);
+                LoadWelcome();
         }
+
+
     }
 }

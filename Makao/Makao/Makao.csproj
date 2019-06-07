@@ -78,6 +78,7 @@
       <DependentUpon>Instrukcja.cs</DependentUpon>
     </Compile>
     <Compile Include="IView.cs" />
+    <Compile Include="Karty.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Gra.cs">
       <SubType>UserControl</SubType>
@@ -123,6 +124,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,6 +156,7 @@
   <ItemGroup>
     <Content Include="back_cards-07.ico" />
     <Content Include="Fotos\honors_spade-14.png" />
+    <None Include="Resources\cards.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

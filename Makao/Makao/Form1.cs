@@ -11,30 +11,97 @@ namespace Makao
 {
     public partial class Form1 : Form, IView
     {
+        private Instrukcja i1;
+        private Powitalna p1;
+        private Gra g1;
+
         public Form1()
         {
             InitializeComponent();
-            powitalna1.LoadInstruction += Powitalna1_LoadInstruction;
-            powitalna1.LoadWelcome += Powitalna1_LoadWelcome;
-        }
 
-        private void Powitalna1_LoadWelcome(Powitalna p1)
-        {
-            this.Controls.Remove(powitalna1);
-            this.Controls.Add(p1);
-        }
+            panel.Controls.Clear();
 
-        private void Powitalna1_LoadInstruction(Instrukcja i1)
-        {
-            this.Controls.Remove(powitalna1);
-            this.Controls.Add(i1);
+            p1 = new Powitalna();
+            panel.Controls.Add(p1);
+            
+            p1.LoadInstruction += Powitalna1_LoadInstruction;
+            p1.LoadWelcome += Powitalna1_LoadWelcome;
+            p1.StartGame += Powitalna1_StartGame;
         }
-
 
         #region Events
-        public event Action<Gra> StartGame;
-        public event Action<Instrukcja> LoadInstruction;
-        public event Action<Powitalna> LoadWelcome;
+        public event Action StartGame;
+        public event Action LoadInstruction;
+        public event Action LoadWelcome;
+        public event Action<Panel> LoadCards;
         #endregion
+
+
+        private void G1_LoadCards(Panel pan)
+        {
+            if (LoadCards != null)
+                LoadCards(pan);
+        }
+
+        private void Powitalna1_StartGame()
+        {
+            panel.Controls.Clear();
+            g1 = new Gra();
+            g1.LoadWelcome += Powitalna1_LoadWelcome;
+            g1.LoadCards += G1_LoadCards;
+            panel.Controls.Add(g1);
+
+            if (!panel.Controls.Contains(g1))
+            {
+                panel.Controls.Add(g1);
+                g1.Dock = DockStyle.Fill;
+                g1.BringToFront();
+            }
+            else
+            {
+                Gra.Instancja.BringToFront();
+            }
+        }
+
+        private void Powitalna1_LoadWelcome()
+        {
+            panel.Controls.Clear();
+            panel.Controls.Add(p1);
+            if (!panel.Controls.Contains(p1))
+            {
+                panel.Controls.Add(p1);
+                Powitalna.Instancja.Dock = DockStyle.Fill;
+                Powitalna.Instancja.BringToFront();
+            }
+            else
+            {
+                Powitalna.Instancja.BringToFront();
+            }
+        }
+
+        private void Powitalna1_LoadInstruction()
+        {
+            i1 = new Instrukcja();
+            panel.Controls.Add(i1);
+
+            i1.LoadInstruction += Powitalna1_LoadInstruction;
+            i1.LoadWelcome += Powitalna1_LoadWelcome;
+            i1.StartGame += Powitalna1_StartGame;
+
+            panel.Controls.Clear();
+            panel.Controls.Add(i1);
+            if (!panel.Controls.Contains(i1))
+            {
+                panel.Controls.Add(i1);
+                Instrukcja.Instancja.Controls.Add(i1);
+                Instrukcja.Instancja.Dock = DockStyle.Fill;
+                Instrukcja.Instancja.BringToFront();
+            }
+            else
+            {
+                Instrukcja.Instancja.BringToFront();
+            }
+        }
+
     }
 }

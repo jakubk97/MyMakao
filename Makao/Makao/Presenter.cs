@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Makao
 {
@@ -13,25 +14,12 @@ namespace Makao
         {
             this.model = model;
             this.view = view;
-            view.StartGame += View_StartGame;
-            view.LoadInstruction += View_LoadInstruction;
-            view.LoadWelcome += View_LoadWelcome;
+            view.LoadCards += View_LoadCards;
         }
 
-        private void View_LoadWelcome(Powitalna p1)
+        private void View_LoadCards(Panel pan)
         {
-            model.LoadWelcome();
+            model.WczytajKarty(pan);
         }
-
-        private void View_LoadInstruction(Instrukcja i1)
-        {
-            model.LoadInstruction();
-        }
-
-        private void View_StartGame(Gra g1)
-        {
-            model.StartGame();
-        }
-
     }
 }

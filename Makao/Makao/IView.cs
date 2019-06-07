@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Makao
 {
@@ -15,9 +16,12 @@ namespace Makao
         #endregion
 
         #region Events
-        event Action<Gra> StartGame;
-        event Action<Instrukcja> LoadInstruction;
-        event Action<Powitalna> LoadWelcome;
+
+        event Action StartGame;
+        event Action LoadInstruction;
+        event Action LoadWelcome;
+        event Action<Panel> LoadCards;
+
         #endregion
     }
 }
