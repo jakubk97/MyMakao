@@ -39,7 +39,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Name = "Gra";
-            this.Size = new System.Drawing.Size(1049, 584);
+            this.Size = new System.Drawing.Size(1050, 600);
             this.ResumeLayout(false);
 
         }

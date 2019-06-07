@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Makao
 {
-    public partial class Gra : UserControl
+    public partial class Instrukcja : UserControl
     {
-        public Gra()
+        public Instrukcja()
         {
             InitializeComponent();
         }
@@ -20,15 +20,13 @@ namespace Makao
         public event Action<Gra> StartGame;
         public event Action<Instrukcja> LoadInstruction;
         public event Action<Powitalna> LoadWelcome;
-
         #endregion
 
-        #region Functions
-
-
-        #endregion
-
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Powitalna p1 = new Powitalna();
+            if (LoadWelcome != null)
+                LoadWelcome(p1);
+        }
     }
 }

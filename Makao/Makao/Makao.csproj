@@ -71,6 +71,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instrukcja.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Instrukcja.Designer.cs">
+      <DependentUpon>Instrukcja.cs</DependentUpon>
+    </Compile>
     <Compile Include="IView.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Gra.cs">
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gra.resx">
       <DependentUpon>Gra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrukcja.resx">
+      <DependentUpon>Instrukcja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Powitalna.resx">
       <DependentUpon>Powitalna.cs</DependentUpon>

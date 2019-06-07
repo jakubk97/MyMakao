@@ -115,7 +115,7 @@
             this.Controls.Add(this.BT_Instrukcja);
             this.Controls.Add(this.BT_Graj);
             this.Name = "Powitalna";
-            this.Size = new System.Drawing.Size(1049, 584);
+            this.Size = new System.Drawing.Size(1050, 600);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

@@ -23,6 +23,10 @@ namespace Makao
 
         }
 
+        public void LoadWelcome()
+        {
+
+        }
         #endregion
     }
 }

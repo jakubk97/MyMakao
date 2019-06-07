@@ -17,22 +17,25 @@ namespace Makao
         }
 
         #region Events
-        public event Action StartGame;
-        public event Action LoadInstruction;
+        public event Action<Gra> StartGame;
+        public event Action<Instrukcja> LoadInstruction;
+        public event Action<Powitalna> LoadWelcome;
 
         #endregion
 
         #region Functions
         private void BT_Graj_Click(object sender, EventArgs e)
         {
+            Gra g1 = new Gra();
             if (StartGame != null)
-                StartGame();
+                StartGame(g1);
         }
 
         private void BT_Instrukcja_Click(object sender, EventArgs e)
         {
+            Instrukcja i1 = new Instrukcja();
             if (LoadInstruction != null)
-                LoadInstruction();
+                LoadInstruction(i1);
         }
 
         private void BT_Wyjdz_Click(object sender, EventArgs e)

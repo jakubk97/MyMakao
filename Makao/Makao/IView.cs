@@ -15,8 +15,9 @@ namespace Makao
         #endregion
 
         #region Events
-        event Action StartGame;
-        event Action LoadInstruction;
+        event Action<Gra> StartGame;
+        event Action<Instrukcja> LoadInstruction;
+        event Action<Powitalna> LoadWelcome;
         #endregion
     }
 }

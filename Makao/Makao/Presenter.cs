@@ -15,14 +15,20 @@ namespace Makao
             this.view = view;
             view.StartGame += View_StartGame;
             view.LoadInstruction += View_LoadInstruction;
+            view.LoadWelcome += View_LoadWelcome;
         }
 
-        private void View_LoadInstruction()
+        private void View_LoadWelcome(Powitalna p1)
+        {
+            model.LoadWelcome();
+        }
+
+        private void View_LoadInstruction(Instrukcja i1)
         {
             model.LoadInstruction();
         }
 
-        private void View_StartGame()
+        private void View_StartGame(Gra g1)
         {
             model.StartGame();
         }

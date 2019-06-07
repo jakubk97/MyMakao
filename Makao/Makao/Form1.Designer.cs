@@ -62,6 +62,7 @@
         }
 
         #endregion
+
         private Powitalna powitalna1;
     }
 }
