@@ -19,7 +19,9 @@ namespace Makao
 
         private void View_LoadCards(Panel pan)
         {
-            model.WczytajKarty(pan);
+            model.Tasowanie(pan);
+            model.DodajGraczy(2,pan);
+            model.RozpocznijGre(pan);
         }
     }
 }

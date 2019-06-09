@@ -10,7 +10,7 @@ namespace Makao
     {
         public int Number, Color;
         public Bitmap Picture;
-        private bool OnTable;
+        public bool OnTable;
 
         public Karty(int number, int color, Bitmap picture,bool ontable=false)
         {

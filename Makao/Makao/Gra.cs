@@ -52,7 +52,10 @@ namespace Makao
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            //e.Graphics.DrawImage(Properties.Resources.cards,new Point(0,0));
+            //Bitmap btm = new Bitmap(Properties.Resources.back);
+            //Graphics g = Graphics.FromImage(btm);
+            //e.Graphics.DrawImage(btm, 0, 0);
+            //g.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)

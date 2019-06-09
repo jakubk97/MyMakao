@@ -30,51 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel = new System.Windows.Forms.Panel();
-            //this.powitalna1 = new Makao.Powitalna();
-            //this.instrukcja1 = new Makao.Instrukcja();
-            //this.gra1 = new Makao.Gra();
-            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel
             // 
+            this.panel.AutoSize = true;
+            this.panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel.BackColor = System.Drawing.Color.Transparent;
-            //this.panel.Controls.Add(this.powitalna1);
-            //this.panel.Controls.Add(this.instrukcja1);
-            //this.panel.Controls.Add(this.gra1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(1044, 561);
             this.panel.TabIndex = 2;
-            //// 
-            //// powitalna1
-            //// 
-            //this.powitalna1.BackColor = System.Drawing.Color.Transparent;
-            //this.powitalna1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("powitalna1.BackgroundImage")));
-            //this.powitalna1.Location = new System.Drawing.Point(0, 0);
-            //this.powitalna1.Name = "powitalna1";
-            //this.powitalna1.Size = new System.Drawing.Size(1044, 561);
-            //this.powitalna1.TabIndex = 2;
-            //// 
-            //// instrukcja1
-            //// 
-            //this.instrukcja1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("instrukcja1.BackgroundImage")));
-            //this.instrukcja1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            //this.instrukcja1.Location = new System.Drawing.Point(0, 0);
-            //this.instrukcja1.Name = "instrukcja1";
-            //this.instrukcja1.Size = new System.Drawing.Size(1044, 561);
-            //this.instrukcja1.TabIndex = 1;
-            //// 
-            //// gra1
-            //// 
-            //this.gra1.BackColor = System.Drawing.Color.Transparent;
-            //this.gra1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gra1.BackgroundImage")));
-            //this.gra1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            //this.gra1.Location = new System.Drawing.Point(0, 0);
-            //this.gra1.Name = "gra1";
-            //this.gra1.Size = new System.Drawing.Size(1044, 561);
-            //this.gra1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -93,8 +60,8 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Makao";
-            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
