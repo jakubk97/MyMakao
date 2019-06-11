@@ -127,11 +127,11 @@ namespace Makao
             {
                 Panel pan = ((Control)sender).Parent.Parent.Parent.Controls.Find("panel1", true)[0] as Panel;
                 PictureBox pic = sender as PictureBox;
+                Button bt = pan.Parent.Parent.Parent.Controls.Find("BT_Stop", true)[0] as Button;
                 Cards card = pic.Tag as Cards;
                 Kolory Color = (Kolory)card.Color1;
                 Figury Number = (Figury)card.Number1;
                 Form myForm = pan.FindForm();
-                myForm.Text = "";
                 Player player = null;
                 if (card.Player == p1)
                     player = p2;
@@ -145,6 +145,8 @@ namespace Makao
 
                     if (MustColor == card.Color1 || MustNumber == card.Number1 || card.Number1 == 11)
                     {
+                        myForm.Text = "";
+                        bt.Visible = false;
                         karta.OnTable1 = false;
                         OnTableList.Clear();
                         OnTableList.Add(Pics[card.Number1, card.Color1]);
@@ -178,9 +180,20 @@ namespace Makao
                 if (p1.CardsList().Count == 0)
                 {
                     pan.Visible = false;
-                    Button bt = pan.Parent.Parent.Parent.Controls.Find("BT_End", true)[0] as Button;
+                    bt = pan.Parent.Parent.Parent.Controls.Find("BT_End", true)[0] as Button;
                     pan.Controls.Clear();
                     pan.Controls.Add(bt);
+                    bt.Text = "Wygrana!";
+                    bt.Visible = true;
+                    pan.Visible = true;
+                }
+                else if(p2.CardsList().Count == 0)
+                {
+                    pan.Visible = false;
+                    bt = pan.Parent.Parent.Parent.Controls.Find("BT_End", true)[0] as Button;
+                    pan.Controls.Clear();
+                    pan.Controls.Add(bt);
+                    bt.Text = "Przegrana!";
                     bt.Visible = true;
                     pan.Visible = true;
                 }
@@ -193,7 +206,18 @@ namespace Makao
 
         public void ZagranieKomputera(Panel pan)
         {
-            int i = 0;
+            int i = 1;
+            if (p2.CardsList().Count == 0)
+            {
+                Button bt = pan.Parent.Parent.Parent.Controls.Find("BT_Stop", true)[0] as Button;
+                pan.Visible = false;
+                bt = pan.Parent.Parent.Parent.Controls.Find("BT_End", true)[0] as Button;
+                bt.Text = "Przegrana!";
+                pan.Controls.Clear();
+                pan.Controls.Add(bt);
+                bt.Visible = true;
+                pan.Visible = true;
+            }
             foreach (var karty in p2.CardsList())
             {
                 Cards karta = OnTableList.Last().Tag as Cards;
@@ -207,6 +231,8 @@ namespace Makao
                     Pics[karty.Number1, karty.Color1].BringToFront();
                     Pics[karty.Number1, karty.Color1].Location = new Point(pan.Width / 2, pan.Height / 2);
                     Pics[karty.Number1, karty.Color1].Visible = true;
+                    PicsBacks[karty.Number1, karty.Color1].Visible = false;
+                    Pics[MustNumber, MustColor].Visible = true;
                     p2.RemoveCard(karty);
                     if (karty.Number1 == 0 || karty.Number1 == 1 || karty.Number1 == 2
                         || karty.Number1 == 3 || karty.Number1 == 10
@@ -214,6 +240,15 @@ namespace Makao
                     {
                         SprawdzSpecjalne(karty.Number1, karty.Color1, pan, p1);
                     }
+                    UstawKartyGracza(pan, p1);
+                    UstawKartyKomputera(pan, p2);
+                    return;
+                }
+                else if (MustColor == 4 && MustNumber == 3)
+                {
+                    Cards k = OnTableList.Last().Tag as Cards;
+                    MustColor = k.Color1;
+                    MustNumber = k.Number1;
                     UstawKartyGracza(pan, p1);
                     UstawKartyKomputera(pan, p2);
                     return;
@@ -228,6 +263,8 @@ namespace Makao
                     Pics[karty.Number1, karty.Color1].BringToFront();
                     Pics[karty.Number1, karty.Color1].Location = new Point(pan.Width / 2, pan.Height / 2);
                     Pics[karty.Number1, karty.Color1].Visible = true;
+                    PicsBacks[karty.Number1, karty.Color1].Visible = false;
+                    Pics[MustNumber, MustColor].Visible = true;
                     p2.RemoveCard(karty);
                     if (karty.Number1 == 0 || karty.Number1 == 1 || karty.Number1 == 2
                         || karty.Number1 == 3 || karty.Number1 == 10
@@ -249,6 +286,8 @@ namespace Makao
                     Pics[karty.Number1, karty.Color1].BringToFront();
                     Pics[karty.Number1, karty.Color1].Location = new Point(pan.Width / 2, pan.Height / 2);
                     Pics[karty.Number1, karty.Color1].Visible = true;
+                    PicsBacks[karty.Number1, karty.Color1].Visible = false;
+                    Pics[MustNumber, MustColor].Visible = true;
                     p2.RemoveCard(karty);
                     if (karty.Number1 == 0 || karty.Number1 == 1 || karty.Number1 == 2
                         || karty.Number1 == 3 || karty.Number1 == 10
@@ -270,6 +309,8 @@ namespace Makao
                     Pics[karty.Number1, karty.Color1].BringToFront();
                     Pics[karty.Number1, karty.Color1].Location = new Point(pan.Width / 2, pan.Height / 2);
                     Pics[karty.Number1, karty.Color1].Visible = true;
+                    PicsBacks[karty.Number1, karty.Color1].Visible = false;
+                    Pics[MustNumber, MustColor].Visible = true;
                     p2.RemoveCard(karty);
                     if (karty.Number1 == 0 || karty.Number1 == 1 || karty.Number1 == 2
                         || karty.Number1 == 3 || karty.Number1 == 10
@@ -279,13 +320,6 @@ namespace Makao
                     }
                     UstawKartyGracza(pan, p1);
                     UstawKartyKomputera(pan, p2);
-                    return;
-                }
-                else if (MustColor == 4 && MustNumber == 3)
-                {
-                    Cards k = OnTableList.Last().Tag as Cards;
-                    MustColor = k.Color1;
-                    MustNumber = k.Number1;
                     return;
                 }
                 else if (i == p2.CardsList().Count)
@@ -300,45 +334,55 @@ namespace Makao
         {
             if (number == 0)//AS
             {
-                MessageBoxManager.Yes = "Kier";
-                MessageBoxManager.No = "Karo";
-                MessageBoxManager.Cancel = "Inny";
-                MessageBoxManager.Register();
-
-                DialogResult dialogResult = MessageBox.Show("Jaki kolor chcesz wybrać?", "Wybierz kolor", MessageBoxButtons.YesNoCancel);
-                if (dialogResult == DialogResult.Yes)
+                if (player == p2)
                 {
-                    MustColor = 0;
-                    Form myForm = pan.FindForm();
-                    myForm.Text = "Wymagany kolor to kier!";
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    MustColor = 1;
-                    Form myForm = pan.FindForm();
-                    myForm.Text = "Wymagany kolor to karo!";
-                }
-                else if (dialogResult == DialogResult.Cancel)
-                {
-                    MessageBoxManager.Unregister();
-                    MessageBoxManager.Yes = "Trefl";
-                    MessageBoxManager.No = "Pik";
+                    MessageBoxManager.Yes = "Kier";
+                    MessageBoxManager.No = "Karo";
+                    MessageBoxManager.Cancel = "Inny";
                     MessageBoxManager.Register();
-                    DialogResult dialogResult2 = MessageBox.Show("Jaki kolor chcesz wybrać?", "Wybierz kolor", MessageBoxButtons.YesNo);
-                    if (dialogResult2 == DialogResult.Yes)
+
+                    DialogResult dialogResult = MessageBox.Show("Jaki kolor chcesz wybrać?", "Wybierz kolor", MessageBoxButtons.YesNoCancel);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        MustColor = 2;
+                        MustColor = 0;
                         Form myForm = pan.FindForm();
-                        myForm.Text = "Wymagany kolor to trefl!";
+                        myForm.Text = "Wymagany kolor to kier!";
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        MustColor = 3;
+                        MustColor = 1;
                         Form myForm = pan.FindForm();
-                        myForm.Text = "Wymagany kolor to pik!";
+                        myForm.Text = "Wymagany kolor to karo!";
                     }
+                    else if (dialogResult == DialogResult.Cancel)
+                    {
+                        MessageBoxManager.Unregister();
+                        MessageBoxManager.Yes = "Trefl";
+                        MessageBoxManager.No = "Pik";
+                        MessageBoxManager.Register();
+                        DialogResult dialogResult2 = MessageBox.Show("Jaki kolor chcesz wybrać?", "Wybierz kolor", MessageBoxButtons.YesNo);
+                        if (dialogResult2 == DialogResult.Yes)
+                        {
+                            MustColor = 2;
+                            Form myForm = pan.FindForm();
+                            myForm.Text = "Wymagany kolor to trefl!";
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            MustColor = 3;
+                            Form myForm = pan.FindForm();
+                            myForm.Text = "Wymagany kolor to "+ (Kolory)MustColor;
+                        }
+                    }
+                    MessageBoxManager.Unregister();
                 }
-                MessageBoxManager.Unregister();
+                else
+                {
+                    Random r = new Random(DateTime.Now.Millisecond);
+                    MustColor = r.Next(0, 3);
+                    Form myForm = pan.FindForm();
+                    myForm.Text = "Wymagany kolor to pik!";
+                }
             }
             else if (number == 1)//2
             {
@@ -359,79 +403,95 @@ namespace Makao
                     Button bt = pan.Parent.Parent.Parent.Controls.Find("BT_Stop", true)[0] as Button;
                     bt.Visible = true;
                 }
+                else
+                {
+                    MustNumber = 3;
+                    MustColor = 2;
+                }
             }
             else if (number == 10)//J
             {
-                MessageBoxManager.Yes = "5";
-                MessageBoxManager.No = "6";
-                MessageBoxManager.Cancel = "Inny";
-                MessageBoxManager.Register();
-
-                DialogResult dialogResult = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
-                if (dialogResult == DialogResult.Yes)
+                if (player == p2)
                 {
-                    MustNumber = 4;
-                    MustColor = 4;
-                    Form myForm = pan.FindForm();
-                    myForm.Text = "Wymagana karta to 5!";
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    MustNumber = 5;
-                    MustColor = 4;
-                    Form myForm = pan.FindForm();
-                    myForm.Text = "Wymagana karta to 6!";
-                }
-                else if (dialogResult == DialogResult.Cancel)
-                {
-                    MessageBoxManager.Unregister();
-                    MessageBoxManager.Yes = "7";
-                    MessageBoxManager.No = "8";
+                    MessageBoxManager.Yes = "5";
+                    MessageBoxManager.No = "6";
+                    MessageBoxManager.Cancel = "Inny";
                     MessageBoxManager.Register();
-                    DialogResult dialogResult2 = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
-                    if (dialogResult2 == DialogResult.Yes)
+
+                    DialogResult dialogResult = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        MustNumber = 6;
+                        MustNumber = 4;
                         MustColor = 4;
                         Form myForm = pan.FindForm();
-                        myForm.Text = "Wymagana karta to 7!";
+                        myForm.Text = "Wymagana karta to 5!";
                     }
-                    else if (dialogResult2 == DialogResult.No)
+                    else if (dialogResult == DialogResult.No)
                     {
-                        MustNumber = 7;
+                        MustNumber = 5;
                         MustColor = 4;
                         Form myForm = pan.FindForm();
-                        myForm.Text = "Wymagana karta to 8!";
+                        myForm.Text = "Wymagana karta to 6!";
                     }
-                    else if (dialogResult2 == DialogResult.Cancel)
+                    else if (dialogResult == DialogResult.Cancel)
                     {
                         MessageBoxManager.Unregister();
-                        MessageBoxManager.Yes = "9";
-                        MessageBoxManager.No = "10";
-                        MessageBoxManager.Cancel = "Brak";
+                        MessageBoxManager.Yes = "7";
+                        MessageBoxManager.No = "8";
                         MessageBoxManager.Register();
-                        DialogResult dialogResult3 = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
-                        if (dialogResult3 == DialogResult.Yes)
+                        DialogResult dialogResult2 = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
+                        if (dialogResult2 == DialogResult.Yes)
                         {
-                            MustNumber = 8;
+                            MustNumber = 6;
                             MustColor = 4;
                             Form myForm = pan.FindForm();
-                            myForm.Text = "Wymagana karta to 9!";
+                            myForm.Text = "Wymagana karta to 7!";
                         }
-                        else if (dialogResult3 == DialogResult.No)
+                        else if (dialogResult2 == DialogResult.No)
                         {
-                            MustNumber = 9;
+                            MustNumber = 7;
                             MustColor = 4;
                             Form myForm = pan.FindForm();
-                            myForm.Text = "Wymagana karta to 10!";
+                            myForm.Text = "Wymagana karta to 8!";
                         }
-                        else if (dialogResult == DialogResult.Cancel)
+                        else if (dialogResult2 == DialogResult.Cancel)
                         {
+                            MessageBoxManager.Unregister();
+                            MessageBoxManager.Yes = "9";
+                            MessageBoxManager.No = "10";
+                            MessageBoxManager.Cancel = "Brak";
+                            MessageBoxManager.Register();
+                            DialogResult dialogResult3 = MessageBox.Show("Jaką figurę chcesz wybrać?", "Wybierz figurę", MessageBoxButtons.YesNoCancel);
+                            if (dialogResult3 == DialogResult.Yes)
+                            {
+                                MustNumber = 8;
+                                MustColor = 4;
+                                Form myForm = pan.FindForm();
+                                myForm.Text = "Wymagana karta to 9!";
+                            }
+                            else if (dialogResult3 == DialogResult.No)
+                            {
+                                MustNumber = 9;
+                                MustColor = 4;
+                                Form myForm = pan.FindForm();
+                                myForm.Text = "Wymagana karta to 10!";
+                            }
+                            else if (dialogResult == DialogResult.Cancel)
+                            {
 
+                            }
                         }
                     }
+                    MessageBoxManager.Unregister();
                 }
-                MessageBoxManager.Unregister();
+                else
+                {
+                    Random r = new Random(DateTime.Now.Millisecond);
+                    MustNumber = r.Next(4, 9);
+                    MustColor = 4;
+                    Form myForm = pan.FindForm();
+                    myForm.Text = "Wymagana karta to !" + (MustNumber + 1);
+                }
             }
             else if (number == 12 && color == 0)//K
             {
@@ -452,6 +512,7 @@ namespace Makao
             myForm.Text = "";
             Button bt = pan.Parent.Parent.Parent.Controls.Find("BT_Stop", true)[0] as Button;
             bt.Visible = false;
+            ZagranieKomputera(pan);
         }
 
 
@@ -542,7 +603,7 @@ namespace Makao
                     }
                     else
                     {
-                        x0 += PicsBacks[karty.Number1, karty.Color1].Width + 3;
+                        x0 += PicsBacks[karty.Number1, karty.Color1].Width;
                         player.X1 = pan.Width / 2;
                     }
                 }
