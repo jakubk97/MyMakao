@@ -8,13 +8,6 @@ namespace Makao
 {
     interface IView
     {
-        #region Properties
-        //string[] DirectoryContent { get; set; }
-        //string[] Path { get; set; }
-        //string[] Question { get; set; }
-
-        #endregion
-
         #region Events
 
         event Action StartGame;

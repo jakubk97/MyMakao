@@ -8,7 +8,7 @@ namespace Makao
     class Player
     {
         List<Cards> karty;
-        private int X, Y; //pozycja na planszy
+        private int X, Y;
         List<string> Players = new List<string>();
         private string Name;
 
@@ -60,20 +60,10 @@ namespace Makao
             karty.Add(karta);
         }
 
-        //public int X1()
-        //{
-        //    return X2;
-        //}
-
         public string Name1()
         {
             return Name;
         }
-
-        //public int Y1()
-        //{
-        //    return Y;
-        //}
 
         public int RemoveCard(Cards karta)
         {

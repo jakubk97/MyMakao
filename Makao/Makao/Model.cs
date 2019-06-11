@@ -20,12 +20,10 @@ namespace Makao
         private int CardWidth, CardHeight;
         private PictureBox[,] Pics = null;
         private PictureBox[,] PicsBacks = null;
-        //private Cards kartaNaSrodku;
         private int MustColor, MustNumber;
         List<Player> PlaList;
         List<PictureBox> OnTableList;
         Player p1, p2;
-        //List<Point> punkty;
 
         private enum Kolory
         {
@@ -66,14 +64,12 @@ namespace Makao
                 {
                     for (int numer = 0; numer < NumRanks; numer++)
                     {
-                        //PicsBacks[numer, color] = Pics[NumRanks, NumSuits - 1];
                         PicsBacks[numer, color] = WczytajKarte(NumRanks + 1, NumSuits, 0, 0, pan, Properties.Resources.back, null);
                     }
                 }
                 OnTableList = new List<PictureBox>();
                 pan.Visible = true;
                 RzucPierwsza(pan);
-                //pan.Paint += Pan_Paint;
             }
             catch (Exception)
             {
@@ -200,7 +196,6 @@ namespace Makao
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Błąd");
             }
         }
 
