@@ -78,7 +78,8 @@
       <DependentUpon>Instrukcja.cs</DependentUpon>
     </Compile>
     <Compile Include="IView.cs" />
-    <Compile Include="Karty.cs" />
+    <Compile Include="Cards.cs" />
+    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Gra.cs">
       <SubType>UserControl</SubType>
@@ -156,9 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="back_cards-07.ico" />
-    <None Include="Fotos\gray_back.png" />
     <None Include="Fotos\back.png" />
-    <Content Include="Fotos\honors_spade-14.png" />
+    <None Include="Fotos\cards.png" />
+    <None Include="Fotos\backs.png" />
     <None Include="Resources\cards.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

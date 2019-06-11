@@ -21,6 +21,8 @@ namespace Makao
         event Action LoadInstruction;
         event Action LoadWelcome;
         event Action<Panel> LoadCards;
+        event Action<Panel> PullCard;
+        event Action<Panel> Stop;
 
         #endregion
     }

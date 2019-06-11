@@ -28,21 +28,19 @@ namespace Makao
             InitializeComponent();
         }
 
+
         #region Events
         public event Action StartGame;
         public event Action LoadInstruction;
         public event Action LoadWelcome;
         public event Action<Panel> LoadCards;
-
-
-
-
+        public event Action<Panel> PullCard;
+        public event Action<Panel> Stop;
         #endregion
+
+
 
         #region Functions
-
-
-        #endregion
 
         private void Gra_Load(object sender, EventArgs e)
         {
@@ -50,15 +48,9 @@ namespace Makao
                 LoadCards(panel1);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            //Bitmap btm = new Bitmap(Properties.Resources.back);
-            //Graphics g = Graphics.FromImage(btm);
-            //e.Graphics.DrawImage(btm, 0, 0);
-            //g.Dispose();
-        }
+        #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz wyjść z gry?", "Wyjście z gry", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -66,6 +58,24 @@ namespace Makao
                 if (LoadWelcome != null)
                     LoadWelcome();
             }
+        }
+
+        private void BT_Pull_Click_1(object sender, EventArgs e)
+        {
+            if (PullCard != null)
+                PullCard(panel1);
+        }
+
+        private void BT_End_Click(object sender, EventArgs e)
+        {
+            if (LoadWelcome != null)
+                LoadWelcome();
+        }
+
+        private void BT_Stop_Click(object sender, EventArgs e)
+        {
+            if (Stop != null)
+                Stop(panel1);
         }
     }
 }

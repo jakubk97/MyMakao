@@ -23,7 +23,7 @@ namespace Makao
 
             p1 = new Powitalna();
             panel.Controls.Add(p1);
-            
+
             p1.LoadInstruction += Powitalna1_LoadInstruction;
             p1.LoadWelcome += Powitalna1_LoadWelcome;
             p1.StartGame += Powitalna1_StartGame;
@@ -34,6 +34,8 @@ namespace Makao
         public event Action LoadInstruction;
         public event Action LoadWelcome;
         public event Action<Panel> LoadCards;
+        public event Action<Panel> PullCard;
+        public event Action<Panel> Stop;
         #endregion
 
 
@@ -43,12 +45,25 @@ namespace Makao
                 LoadCards(pan);
         }
 
+        private void G1_PullCard(Panel pan)
+        {
+            if (PullCard != null)
+                PullCard(pan);
+        }
+        private void G1_Stop(Panel pan)
+        {
+            if (Stop != null)
+                Stop(pan);
+        }
+
         private void Powitalna1_StartGame()
         {
             panel.Controls.Clear();
             g1 = new Gra();
             g1.LoadWelcome += Powitalna1_LoadWelcome;
             g1.LoadCards += G1_LoadCards;
+            g1.PullCard += G1_PullCard;
+            g1.Stop += G1_Stop;
             panel.Controls.Add(g1);
 
             if (!panel.Controls.Contains(g1))
@@ -62,6 +77,8 @@ namespace Makao
                 Gra.Instancja.BringToFront();
             }
         }
+
+     
 
         private void Powitalna1_LoadWelcome()
         {
